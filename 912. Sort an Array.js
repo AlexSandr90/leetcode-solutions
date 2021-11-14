@@ -1,8 +1,8 @@
 // Given an array of integers nums, sort the array in ascending order.
-
-const sortArray = nums => nums.sort((a, b) => a - b);
-
-console.log(sortArray([5, 2, 3, 1]));
+//
+// const sortArray = nums => nums.sort((a, b) => a - b);
+//
+// console.log(sortArray([5, 2, 3, 1]));
 
 // const bubbleSortArray = nums => {
 //
@@ -56,3 +56,23 @@ console.log(sortArray([5, 2, 3, 1]));
 // }
 //
 // console.log(quickSort([5, 2, 3, 1]));
+
+const bubbleSort = arr => {
+    let stepCount = arr.length - 1;
+    let swapped;
+
+    do {
+        swapped = false;
+        for (let i = 0; i < stepCount; i++) {
+            if (arr[i] > arr[i + 1]) {
+                [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+                swapped = true;
+            }
+        }
+        stepCount--;
+    } while (swapped);
+
+    return arr;
+};
+
+console.log(bubbleSort([5, 2, 3, 1]));
