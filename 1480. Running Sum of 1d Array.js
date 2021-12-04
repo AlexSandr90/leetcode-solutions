@@ -34,7 +34,6 @@ const runningSum = nums => {
             res.push(res[index - 1] + item)
         }
     });
-
     return res
 };
 
