@@ -43,27 +43,27 @@
 //
 //     return res.length === 0;
 // };
-
-const isValid = str => {
-    if (str.length % 2 !== 0) {
-        return false;
-    }
-    const res = [];
-    const hash = {
-        '{': '}',
-        '[': ']',
-        '(': ')',
-    };
-    for (let i = 0; i < str.length; i++) {
-        // if (hash[str[i]]) {
-        if (str[i] === '{' || str[i] === '[' || str[i] === '(') {
-            res.push(hash[str[i]]);
-        } else if (str[i] !== res.pop()) {
-            return false;
-        }
-    }
-    return res.length === 0
-};
+//
+// const isValid = str => {
+//     if (str.length % 2 !== 0) {
+//         return false;
+//     }
+//     const res = [];
+//     const hash = {
+//         '{': '}',
+//         '[': ']',
+//         '(': ')',
+//     };
+//     for (let i = 0; i < str.length; i++) {
+//         // if (hash[str[i]]) {
+//         if (str[i] === '{' || str[i] === '[' || str[i] === '(') {
+//             res.push(hash[str[i]]);
+//         } else if (str[i] !== res.pop()) {
+//             return false;
+//         }
+//     }
+//     return res.length === 0
+// };
 
 
 // const isValid = str => {
@@ -73,6 +73,33 @@ const isValid = str => {
 //     };
 //     return str === '';
 // };
+
+function isValid(str) {
+    let stack = [];
+    const brackets = {
+        '}': '{',
+        ']': '[',
+        '(': '('
+    };
+    for (let i = 0; i < str.length; i++) {
+        const current = str[i];
+
+        if (isClosedBacked(current)) {
+            if (brackets[current] !== stack.pop()) {
+                return false;
+            }
+        } else {
+            stack.push(current);
+        }
+    }
+
+    return stack.length === 0;
+};
+
+
+function isClosedBacked(ch) {
+    return [')', '}', ']'].indexOf(ch) > - 1;
+}
 
 console.log(isValid("{[]}"));
 console.log(isValid("()[]{}"));
